@@ -34,16 +34,16 @@ def SendText(coinsToCheck):
 
 
 def job():
-     SendText(['BTC','ETH'])
+     global eligibleCrpytos
+     SendText(eligibleCrpytos)
 
 
 if __name__ == "__main__":
      coinBaseCryptos = ['ZRX', '1INCH', 'AAVE', 'ALGO', 'AMP', 'FORTH', 'ANKR', 'BAL', 'Token BNT', 'BAND', 'BOND', 'Token BAT', 'BTC', 'Cash BCH', 'ADA', 'CTSI', 'CGLD', 'CHZ', 'COMP', 'ATOM', 'Token CRV', 'DAI', 'COMP', 'DASH', 'COMP', 'DOGE', 'Coin ENJ', 'MLN', 'EOS', 'ETH', 'ETC', 'FIL', 'GTC', 'RLC', 'ICP', 'KEEP', 'KNC', 'LTC', 'LRC', 'MIR', 'NKN', 'NU', 'NMR', 'OMG', 'OXT', 'OGN', 'DOT', 'MATIC', 'REN', 'SKL', 'SOL', 'XLM', 'STORJ', 'SUSHI', 'SNX', 'TRB', 'USDT', 'XTZ', 'GRT', 'UMA', 'UNI', 'USDC', 'WTBC', 'YFI', 'ZEC']
-     eligibleCrpytos = [x for x in sys.argv if x in coinBaseCryptos]
+     eligibleCrpytos = [x for x in sys.argv if x.upper() in coinBaseCryptos]
      if len(eligibleCrpytos)==0: eligibleCrpytos = ['ETH', 'BTC']
 
-
-schedule.every(10).minutes.do(job)
+schedule.every().day.at("12:00").do(job)
 
 while True:
      schedule.run_pending()
